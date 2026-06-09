@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import Footer from './Footer';
 
 function Home() {
   const location = useLocation();
-  const name = location.state?.name || localStorage.getItem('registeredUserName') || 'User';
+  const name = location.state?.name ||'User';
   const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState('');
+  const isTasksEmpty = tasks.length === 0;
 
   const addTask = () => {
     if (!input.trim()) return;
@@ -13,12 +15,10 @@ function Home() {
     setInput('');
   };
 
-  const deleteTask = (id) => setTasks(tasks.filter(t => t.id !== id));
-
   return (
     <div className="home-container">
       <h1>Welcome, {name}!</h1>
-      <h3>Total Tasks: {tasks.length}</h3>
+      <p>Task Count: {tasks.length}</p>
       <div>
         <input
           value={input}
@@ -28,13 +28,15 @@ function Home() {
         />
         <button onClick={addTask}>Add Task</button>
       </div>
-      <ul>
+      {isTasksEmpty ? <p>No tasks yet. Add your first task!</p> : 
+            <ul>
         {tasks.map(t => (
           <li key={t.id}>
-            {t.text} <button onClick={() => deleteTask(t.id)}>Delete</button>
+            {t.text}
           </li>
         ))}
-      </ul>
+      </ul>}
+      <Footer />
     </div>
   );
 }
