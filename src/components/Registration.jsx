@@ -8,7 +8,6 @@ function Registration() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name.trim()) return;
-    localStorage.setItem("registeredUserName", name.trim());
     navigate("/", { state: { name: name.trim() } });
   };
 
