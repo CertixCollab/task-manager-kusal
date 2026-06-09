@@ -1,5 +1,10 @@
 import './App.css'
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
+import Home from './components/Home'
+import Dashboard from './components/Dashboard'
+import Profile from './components/Profile'
+import Settings from './components/Settings'
+import Registration from './components/Registration'
 
 function App() {
 
@@ -10,16 +15,14 @@ function App() {
     <Link to="Dashboard">Dashboard</Link>
     <Link to="Profile">Profile</Link>
     <Link to="Settings">Settings</Link>
-    <Link to="Login">Login</Link>
     <Link to="Register">Register</Link>
   </nav>
   <Routes>
-    <Route path="/" element={<div>Home</div>} />
-    <Route path="/Dashboard" element={<div>Dashboard</div>} />
-    <Route path="/Profile" element={<div>Profile</div>} />
-    <Route path="/Settings" element={<div>Settings</div>} />
-    <Route path="/Login" element={<div>Login</div>} />
-    <Route path="/Register" element={<div>Register</div>} />
+    <Route path="/" element={<Home />} />
+    <Route path="/Dashboard" element={<Dashboard />} />
+    <Route path="/Profile" element={<Profile />} />
+    <Route path="/Settings" element={<Settings />} />
+    <Route path="/Register" element={<Registration />} />
   </Routes>
   </BrowserRouter>
 )
