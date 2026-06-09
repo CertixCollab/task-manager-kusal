@@ -11,13 +11,13 @@ function App() {
 
   return (
   <BrowserRouter>
-  <nav>
+  <nav className="nav-bar container flex flex-row gap-20">
     <Link to="/">Home</Link>
-    <Link to="Dashboard">Dashboard</Link>
-    <Link to="Profile">Profile</Link>
-    <Link to="Settings">Settings</Link>
-    <Link to="Register">Register</Link>
-    <Link to="About">About</Link>
+    <Link to="/Dashboard">Dashboard</Link>
+    <Link to="/Profile">Profile</Link>
+    <Link to="/Settings">Settings</Link>
+    <Link to="/Register">Register</Link>
+    <Link to="/About">About</Link>
   </nav>
   <Routes>
     <Route path="/" element={<Home />} />
