@@ -1,16 +1,66 @@
-# React + Vite
+# Task Manager Web Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Student Details
 
-Currently, two official plugins are available:
+- Student Name: [Your Name]
+- Student ID: [Your Student ID]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Project Description
 
-## React Compiler
+This project is a React Task Manager Web Application built for the Frontend Development with React assignment. Users can register with their name, navigate to a personalized home page, and manage daily tasks.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features Implemented
 
-## Expanding the ESLint configuration
+- Registration page with React state and event handling
+- Personalized welcome message after registration
+- Task creation with total task count
+- Dynamic task list rendered with `map()`
+- Separate `TaskItem` component using props
+- Pending and completed task status toggle
+- Conditional rendering for empty task lists
+- React Router navigation for Home, About, and Dashboard
+- Nested dashboard routes for Profile and Settings
+- Footer displayed across the application
+- Tailwind CSS configured through Vite
+- Unit test for registration functionality
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Technologies Used
+
+- React
+- React Router
+- Tailwind CSS
+- Vite
+- Vitest
+- React Testing Library
+
+## Installation Instructions
+
+```bash
+npm install
+```
+
+## Run Instructions
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Run the unit test:
+
+```bash
+npm test
+```
+
+Build the project:
+
+```bash
+npm run build
+```
+
+## Bonus Feature Branch
+
+Bonus Feature Branch Name: `bonus-feature`
+
+This branch includes delete task functionality as the additional bonus feature.
