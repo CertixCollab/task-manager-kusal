@@ -20,6 +20,10 @@ function Home({ userName }) {
     )));
   };
 
+  const deleteTask = (taskId) => {
+    setTasks(tasks.filter((task) => task.id !== taskId));
+  };
+
   return (
     <section className="home-container">
       <div className="panel">
@@ -48,6 +52,7 @@ function Home({ userName }) {
                 key={task.id}
                 task={task}
                 onToggleStatus={toggleTaskStatus}
+                onDeleteTask={deleteTask}
               />
             ))}
           </ul>

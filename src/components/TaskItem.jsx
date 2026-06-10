@@ -1,4 +1,4 @@
-function TaskItem({ task, onToggleStatus }) {
+function TaskItem({ task, onToggleStatus, onDeleteTask }) {
   const isCompleted = task.status === 'Completed';
 
   return (
@@ -11,9 +11,18 @@ function TaskItem({ task, onToggleStatus }) {
           {task.status}
         </span>
       </div>
-      <button type="button" onClick={() => onToggleStatus(task.id)}>
-        {isCompleted ? 'Mark Pending' : 'Mark Completed'}
-      </button>
+      <div className="task-actions">
+        <button type="button" onClick={() => onToggleStatus(task.id)}>
+          {isCompleted ? 'Mark Pending' : 'Mark Completed'}
+        </button>
+        <button
+          className="delete-button"
+          type="button"
+          onClick={() => onDeleteTask(task.id)}
+        >
+          Delete
+        </button>
+      </div>
     </li>
   );
 }

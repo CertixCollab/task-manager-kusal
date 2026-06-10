@@ -63,4 +63,4 @@ npm run build
 
 Bonus Feature Branch Name: `bonus-feature`
 
-The bonus branch should contain an additional feature such as delete task functionality, edit task functionality, search tasks, local storage persistence, dark mode, or responsive design improvements.
+This branch includes delete task functionality as the additional bonus feature.

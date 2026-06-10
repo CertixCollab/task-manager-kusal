@@ -160,6 +160,21 @@ button:hover {
   text-align: left;
 }
 
+.task-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.delete-button {
+  background: #dc2626;
+}
+
+.delete-button:hover {
+  background: #b91c1c;
+}
+
 .task-name {
   margin: 0 0 6px;
   color: #172033;
@@ -227,5 +242,13 @@ button:hover {
   .task-item {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .task-actions {
+    justify-content: stretch;
+  }
+
+  .task-actions button {
+    flex: 1;
   }
 }
