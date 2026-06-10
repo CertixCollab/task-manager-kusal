@@ -1,34 +1,55 @@
 import './App.css'
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Link, Navigate, Route, Routes } from 'react-router-dom'
+import { useState } from 'react'
 import Home from './components/Home'
 import Dashboard from './components/Dashboard'
 import Profile from './components/Profile'
 import Settings from './components/Settings'
 import Registration from './components/Registration'
 import About from './components/About'
+import Footer from './components/Footer'
 
 function App() {
+  const [registeredName, setRegisteredName] = useState('')
 
   return (
-  <BrowserRouter>
-  <nav className="nav-bar container flex flex-row gap-20">
-    <Link to="/">Home</Link>
-    <Link to="/Dashboard">Dashboard</Link>
-    <Link to="/Profile">Profile</Link>
-    <Link to="/Settings">Settings</Link>
-    <Link to="/Register">Register</Link>
-    <Link to="/About">About</Link>
-  </nav>
-  <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/Dashboard" element={<Dashboard />} />
-    <Route path="/Profile" element={<Profile />} />
-    <Route path="/Settings" element={<Settings />} />
-    <Route path="/Register" element={<Registration />} />
-    <Route path="/About" element={<About />} />
-  </Routes>
-  </BrowserRouter>
-)
+    <BrowserRouter>
+      <div className="app-shell">
+        <nav className="nav-bar">
+          <Link to="/home">Home</Link>
+          <Link to="/about">About</Link>
+          <Link to="/dashboard">Dashboard</Link>
+        </nav>
+
+        <main className="page-shell">
+          <Routes>
+            <Route
+              path="/"
+              element={<Registration onRegister={setRegisteredName} />}
+            />
+            <Route
+              path="/home"
+              element={<Home userName={registeredName || 'User'} />}
+            />
+            <Route path="/about" element={<About />} />
+            <Route
+              path="/dashboard"
+              element={<Dashboard userName={registeredName || 'User'} />}
+            >
+              <Route index element={<Navigate to="profile" replace />} />
+              <Route
+                path="profile"
+                element={<Profile userName={registeredName || 'User'} />}
+              />
+              <Route path="settings" element={<Settings />} />
+            </Route>
+          </Routes>
+        </main>
+
+        <Footer />
+      </div>
+    </BrowserRouter>
+  )
 }
 
 export default App

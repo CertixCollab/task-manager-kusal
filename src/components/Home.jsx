@@ -1,43 +1,59 @@
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import Footer from './Footer';
+import TaskItem from './TaskItem';
 
-function Home() {
-  const location = useLocation();
-  const name = location.state?.name ||'User';
+function Home({ userName }) {
   const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState('');
   const isTasksEmpty = tasks.length === 0;
 
   const addTask = () => {
     if (!input.trim()) return;
-    setTasks([...tasks, { id: Date.now(), text: input.trim() }]);
+    setTasks([...tasks, { id: Date.now(), text: input.trim(), status: 'Pending' }]);
     setInput('');
   };
 
+  const toggleTaskStatus = (taskId) => {
+    setTasks(tasks.map((task) => (
+      task.id === taskId
+        ? { ...task, status: task.status === 'Completed' ? 'Pending' : 'Completed' }
+        : task
+    )));
+  };
+
   return (
-    <div className="home-container">
-      <h1>Welcome, {name}!</h1>
-      <p>Task Count: {tasks.length}</p>
-      <div>
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="New task..."
-          onKeyDown={(e) => e.key === 'Enter' && addTask()}
-        />
-        <button onClick={addTask}>Add Task</button>
+    <section className="home-container">
+      <div className="panel">
+        <p className="eyebrow">Home</p>
+        <h1>Welcome, {userName}</h1>
+        <p className="task-total">Total Tasks: {tasks.length}</p>
       </div>
-      {isTasksEmpty ? <p>No tasks yet. Add your first task!</p> : 
-            <ul>
-        {tasks.map(t => (
-          <li key={t.id}>
-            {t.text}
-          </li>
-        ))}
-      </ul>}
-      <Footer />
-    </div>
+
+      <div className="task-manager">
+        <div className="task-form">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Enter a task name"
+            onKeyDown={(e) => e.key === 'Enter' && addTask()}
+          />
+          <button onClick={addTask}>Add Task</button>
+        </div>
+
+        {isTasksEmpty ? (
+          <p className="empty-state">No Tasks Available</p>
+        ) : (
+          <ul className="task-list">
+            {tasks.map((task) => (
+              <TaskItem
+                key={task.id}
+                task={task}
+                onToggleStatus={toggleTaskStatus}
+              />
+            ))}
+          </ul>
+        )}
+      </div>
+    </section>
   );
 }
 
