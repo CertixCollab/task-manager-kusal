@@ -31,6 +31,17 @@ function Home({ userName }) {
     setTasks(updatedTasks);
   };
 
+  const deleteTask = (
+  id
+) => {
+  setTasks(
+    tasks.filter(
+      (task) =>
+        task.id !== id
+    )
+  );
+};
+
   return (
     <div className="container mx-auto p-10">
       <div className="bg-white shadow-lg rounded p-6">
@@ -55,6 +66,7 @@ function Home({ userName }) {
             toggleStatus={
               toggleStatus
             }
+            deleteTask={deleteTask}
           />
         )}
 
