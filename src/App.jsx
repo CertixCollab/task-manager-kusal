@@ -13,10 +13,11 @@ import Settings from "./pages/Settings";
 
 function App() {
   const [userName, setUserName] = useState("");
+  const [darkMode, setDarkMode] = useState(false);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
+    <div className={`min-h-screen flex flex-col ${darkMode ? "dark" : ""}`}>
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
 
       <div className="flex-grow">
         <Routes>
