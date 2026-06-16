@@ -1,29 +1,40 @@
-function TaskItem({ task, onToggleStatus, onDeleteTask }) {
-  const isCompleted = task.status === 'Completed';
 
+function TaskItem({
+  task,
+  toggleStatus,
+}) {
   return (
-    <li className="task-item">
+    <div className="bg-white shadow p-4 rounded mb-3 flex justify-between items-center">
       <div>
-        <p className={isCompleted ? 'task-name completed' : 'task-name'}>
-          {task.text}
+        <h3 className="font-semibold">
+          {task.title}
+        </h3>
+
+        <p>
+          Status:
+          <span
+            className={`ml-2 font-bold ${
+              task.completed
+                ? "text-green-600"
+                : "text-red-500"
+            }`}
+          >
+            {task.completed
+              ? "Completed"
+              : "Pending"}
+          </span>
         </p>
-        <span className={isCompleted ? 'status completed-status' : 'status'}>
-          {task.status}
-        </span>
       </div>
-      <div className="task-actions">
-        <button type="button" onClick={() => onToggleStatus(task.id)}>
-          {isCompleted ? 'Mark Pending' : 'Mark Completed'}
-        </button>
-        <button
-          className="delete-button"
-          type="button"
-          onClick={() => onDeleteTask(task.id)}
-        >
-          Delete
-        </button>
-      </div>
-    </li>
+
+      <button
+        onClick={() =>
+          toggleStatus(task.id)
+        }
+        className="bg-blue-500 text-white px-3 py-2 rounded"
+      >
+        Toggle Status
+      </button>
+    </div>
   );
 }
 

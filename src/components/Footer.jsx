@@ -1,7 +1,9 @@
 function Footer() {
   return (
-    <footer className="footer">&copy; 2026 Task Manager App</footer>
-  )
+    <footer className="bg-gray-800 text-white text-center p-4">
+      © 2026 Task Manager App
+    </footer>
+  );
 }
 
-export default Footer
+export default Footer;

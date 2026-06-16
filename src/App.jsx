@@ -1,55 +1,72 @@
-import './App.css'
-import { BrowserRouter, Link, Navigate, Route, Routes } from 'react-router-dom'
-import { useState } from 'react'
-import Home from './components/Home'
-import Dashboard from './components/Dashboard'
-import Profile from './components/Profile'
-import Settings from './components/Settings'
-import Registration from './components/Registration'
-import About from './components/About'
-import Footer from './components/Footer'
+import { Routes, Route } from "react-router-dom";
+import { useState } from "react";
+
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+import Register from "./pages/Register";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
 
 function App() {
-  const [registeredName, setRegisteredName] = useState('')
+  const [userName, setUserName] = useState("");
 
   return (
-    <BrowserRouter>
-      <div className="app-shell">
-        <nav className="nav-bar">
-          <Link to="/home">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/dashboard">Dashboard</Link>
-        </nav>
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
 
-        <main className="page-shell">
-          <Routes>
-            <Route
-              path="/"
-              element={<Registration onRegister={setRegisteredName} />}
-            />
-            <Route
-              path="/home"
-              element={<Home userName={registeredName || 'User'} />}
-            />
-            <Route path="/about" element={<About />} />
-            <Route
-              path="/dashboard"
-              element={<Dashboard userName={registeredName || 'User'} />}
-            >
-              <Route index element={<Navigate to="profile" replace />} />
-              <Route
-                path="profile"
-                element={<Profile userName={registeredName || 'User'} />}
+      <div className="flex-grow">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Register
+                setUserName={setUserName}
               />
-              <Route path="settings" element={<Settings />} />
-            </Route>
-          </Routes>
-        </main>
+            }
+          />
 
-        <Footer />
+          <Route
+            path="/home"
+            element={
+              <Home
+                userName={userName}
+              />
+            }
+          />
+
+          <Route
+            path="/about"
+            element={<About />}
+          />
+
+          <Route
+            path="/dashboard"
+            element={<Dashboard />}
+          >
+            <Route
+              path="profile"
+              element={
+                <Profile
+                  userName={userName}
+                />
+              }
+            />
+
+            <Route
+              path="settings"
+              element={<Settings />}
+            />
+          </Route>
+        </Routes>
       </div>
-    </BrowserRouter>
-  )
+
+      <Footer />
+    </div>
+  );
 }
 
-export default App
+export default App;
